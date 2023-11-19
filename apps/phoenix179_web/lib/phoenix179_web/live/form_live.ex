@@ -3,11 +3,13 @@ defmodule Phoenix179Web.FormLive do
 
   require Logger
 
-  # alias Phoenix179.{Worker}
+  alias Phoenix179.Worker
 
   def mount(_params, _session, socket) do
     socket =
       if connected?(socket) do
+        Worker.add_player(self())
+
         assign(socket,
           form_test: to_form(%{"val" => 0}, as: "form-test"),
           worker_value: 0
