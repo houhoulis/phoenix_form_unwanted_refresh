@@ -13,9 +13,9 @@ defmodule Phoenix179.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Phoenix179.PubSub},
       # Start Finch
-      {Finch, name: Phoenix179.Finch}
+      {Finch, name: Phoenix179.Finch},
       # Start a worker by calling: Phoenix179.Worker.start_link(arg)
-      # {Phoenix179.Worker, arg}
+      {Phoenix179.Worker, 0}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Phoenix179.Supervisor)
