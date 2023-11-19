@@ -6,17 +6,25 @@ defmodule Phoenix179Web.FormLive do
   alias Phoenix179.Worker
 
   def mount(_params, _session, socket) do
+    form_value =
+      if connected?(socket) do
+        0
+      else
+        -9999
+      end
+
+    form = to_form(%{"val" => form_value}, as: "form-test", id: "form-test-id")
+    socket = assign(socket, form_test: form)
+
     socket =
       if connected?(socket) do
         Worker.add_player(self())
 
         assign(socket,
-          form_test: to_form(%{"val" => 0}, as: "form-test"),
           worker_value: 0
         )
       else
         assign(socket,
-          form_test: to_form(%{"val" => -9999}, as: "form-test"),
           worker_value: -9999
         )
       end
