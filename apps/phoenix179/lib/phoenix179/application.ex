@@ -9,7 +9,7 @@ defmodule Phoenix179.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Phoenix179.Repo,
+      # Phoenix179.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Phoenix179.PubSub},
       # Start Finch
